@@ -2563,6 +2563,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _currentLocation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./currentLocation */ "./src/currentLocation.js");
 
 
+var API_KEY = "6aa562f78c0631a2b538a949824cb0e3";
 var currentLoc = new _currentLocation__WEBPACK_IMPORTED_MODULE_1__["default"]();
 var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -2638,7 +2639,7 @@ var getRequestedCityApi = function getRequestedCityApi(searchedCity) {
   if (!searchedCity) return;
 
   if (searchedCity.length > 0) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/weather?q=".concat(searchedCity, "&units=metric&appid=").concat("6aa562f78c0631a2b538a949824cb0e3")).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/weather?q=".concat(searchedCity, "&units=metric&appid=").concat(API_KEY)).then(function (res) {
       return apiSuccess(res.data);
     })["catch"](function (errMsg) {
       return displayError(errMsg);
@@ -2678,7 +2679,7 @@ var getWeather = function getWeather(locationObj) {
 
 
 var getCoordsWeather = function getCoordsWeather(locationObj) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/weather?lat=".concat(locationObj._lat, "&lon=").concat(locationObj._lon, "&units=").concat(locationObj._unit, "&appid=").concat("6aa562f78c0631a2b538a949824cb0e3")).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/weather?lat=".concat(locationObj._lat, "&lon=").concat(locationObj._lon, "&units=").concat(locationObj._unit, "&appid=").concat(API_KEY)).then(function (res) {
     return setData(res.data);
   })["catch"](function (errMsg) {
     return displayError(errMsg);

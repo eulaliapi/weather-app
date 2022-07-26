@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import CurrentLocation from './currentLocation';
 
+const API_KEY = process.env.OPEN_WEATHER_MAP_API_KEY;
+
 const currentLoc = new CurrentLocation();
 
 let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -86,7 +88,7 @@ export const getRequestedCityApi = (searchedCity) => {
 
     if(!searchedCity) return
     if(searchedCity.length > 0) {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=metric&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}`)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=metric&appid=${API_KEY}`)
         .then (res => apiSuccess(res.data))
         .catch(errMsg => displayError(errMsg))
     }
@@ -129,7 +131,7 @@ const getWeather = (locationObj) => {
 
 //get weather from lat and lon
 const getCoordsWeather = (locationObj) => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${locationObj._lat}&lon=${locationObj._lon}&units=${locationObj._unit}&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${locationObj._lat}&lon=${locationObj._lon}&units=${locationObj._unit}&appid=${API_KEY}`)
         .then(res => setData(res.data))
         .catch(errMsg => displayError(errMsg))
 }
