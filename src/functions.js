@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import CurrentLocation from './currentLocation';
 
-const API_KEY = process.env.OPEN_WEATHER_MAP_API_KEY;
+const API_KEY = "6aa562f78c0631a2b538a949824cb0e3";
 
 const currentLoc = new CurrentLocation();
 
