@@ -2,10 +2,20 @@
 This app was created to learn how to use webpack, bootstrap and classes 
 
 ## API
-API got from [OpenWeather](https://openweathermap.org/) website.
+API got from the [OpenWeather](https://openweathermap.org/) website.
 
 ## Comments:
-Design is meh, doesn't work perfectly, still needs some fixes (setUnit not working properly and visible api key). Working towards this and cleaner code
+
+Improvements:
+
+<li>Unit toggling works fine</li>
+<li>Using modular structure</li>
+</br>
+To improve:
+
+<li>Learn how to hide an API key on Netlify using Dotenv</li>
+<li>Create a button to change language from EN to IT</li>
+<li>Create a button to change time from the 24H format to the 12H one</li>
 
 ## Link to the app:
 [Weather App](https://weather-app-eulaliapi.netlify.app/)
