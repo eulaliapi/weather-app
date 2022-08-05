@@ -2462,16 +2462,16 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./src/currentLocation.js":
-/*!********************************!*\
-  !*** ./src/currentLocation.js ***!
-  \********************************/
+/***/ "./src/Location.js":
+/*!*************************!*\
+  !*** ./src/Location.js ***!
+  \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ CurrentLocation)
+/* harmony export */   "Location": () => (/* binding */ Location)
 /* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2479,9 +2479,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-var CurrentLocation = /*#__PURE__*/function () {
-  function CurrentLocation() {
-    _classCallCheck(this, CurrentLocation);
+var Location = /*#__PURE__*/function () {
+  function Location() {
+    _classCallCheck(this, Location);
 
     this._name = "Current Location";
     this._lat = null;
@@ -2489,7 +2489,7 @@ var CurrentLocation = /*#__PURE__*/function () {
     this._unit = "metric";
   }
 
-  _createClass(CurrentLocation, [{
+  _createClass(Location, [{
     key: "getName",
     value: function getName() {
       return this._name;
@@ -2497,7 +2497,7 @@ var CurrentLocation = /*#__PURE__*/function () {
   }, {
     key: "setName",
     value: function setName(name) {
-      this._name = name;
+      return this._name = name;
     }
   }, {
     key: "getLat",
@@ -2507,7 +2507,7 @@ var CurrentLocation = /*#__PURE__*/function () {
   }, {
     key: "setLat",
     value: function setLat(lat) {
-      this._lat = lat;
+      return this._lat = lat;
     }
   }, {
     key: "getLon",
@@ -2517,7 +2517,7 @@ var CurrentLocation = /*#__PURE__*/function () {
   }, {
     key: "setLon",
     value: function setLon(lon) {
-      this._lon = lon;
+      return this._lon = lon;
     }
   }, {
     key: "getUnit",
@@ -2527,191 +2527,415 @@ var CurrentLocation = /*#__PURE__*/function () {
   }, {
     key: "setUnit",
     value: function setUnit(unit) {
-      this._unit = unit;
+      return this._unit = unit;
     }
   }, {
     key: "toggleUnit",
     value: function toggleUnit() {
-      this._unit = this._unit === "metric" ? "imperial" : "metric";
+      return this._unit = this._unit === "metric" ? "imperial" : "metric";
     }
   }]);
 
-  return CurrentLocation;
+  return Location;
 }();
-
-
 
 /***/ }),
 
-/***/ "./src/functions.js":
-/*!**************************!*\
-  !*** ./src/functions.js ***!
-  \**************************/
+/***/ "./src/Weather.js":
+/*!************************!*\
+  !*** ./src/Weather.js ***!
+  \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "displaySpinner": () => (/* binding */ displaySpinner),
-/* harmony export */   "getDateAndTime": () => (/* binding */ getDateAndTime),
-/* harmony export */   "getGeoWeather": () => (/* binding */ getGeoWeather),
-/* harmony export */   "getRequestedCityApi": () => (/* binding */ getRequestedCityApi),
-/* harmony export */   "setUnitPref": () => (/* binding */ setUnitPref)
+/* harmony export */   "Weather": () => (/* binding */ Weather)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Weather = /*#__PURE__*/function () {
+  function Weather() {
+    _classCallCheck(this, Weather);
+
+    this._name = "Your position";
+    this._temp = null;
+    this._feelsLike = null;
+    this._description = null;
+    this._icon = null;
+  }
+
+  _createClass(Weather, [{
+    key: "getName",
+    value: function getName() {
+      return this._name;
+    }
+  }, {
+    key: "setName",
+    value: function setName(name) {
+      return this._name = name;
+    }
+  }, {
+    key: "getTemp",
+    value: function getTemp() {
+      return this._temp;
+    }
+  }, {
+    key: "setTemp",
+    value: function setTemp(temp) {
+      return this._temp = temp;
+    }
+  }, {
+    key: "getFeelsLike",
+    value: function getFeelsLike() {
+      return this._feelsLike;
+    }
+  }, {
+    key: "setFeelsLike",
+    value: function setFeelsLike(feelsLike) {
+      return this._feelsLike = feelsLike;
+    }
+  }, {
+    key: "getDescription",
+    value: function getDescription() {
+      return this._description;
+    }
+  }, {
+    key: "setDescription",
+    value: function setDescription(description) {
+      return this._description = description;
+    }
+  }, {
+    key: "getIcon",
+    value: function getIcon() {
+      return this._icon;
+    }
+  }, {
+    key: "setIcon",
+    value: function setIcon(icon) {
+      return this._icon = icon;
+    }
+  }]);
+
+  return Weather;
+}();
+
+/***/ }),
+
+/***/ "./src/dataFunctions.js":
+/*!******************************!*\
+  !*** ./src/dataFunctions.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCoordsFromApi": () => (/* binding */ getCoordsFromApi),
+/* harmony export */   "getWeatherFromCoords": () => (/* binding */ getWeatherFromCoords),
+/* harmony export */   "setLocationObject": () => (/* binding */ setLocationObject)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _currentLocation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./currentLocation */ "./src/currentLocation.js");
+/* harmony import */ var _domFunctions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./domFunctions.js */ "./src/domFunctions.js");
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.js */ "./src/index.js");
+/* harmony import */ var _Weather_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Weather.js */ "./src/Weather.js");
 
 
-var API_KEY = "6aa562f78c0631a2b538a949824cb0e3";
-var currentLoc = new _currentLocation__WEBPACK_IMPORTED_MODULE_1__["default"]();
+
+
+var todayW = new _Weather_js__WEBPACK_IMPORTED_MODULE_3__.Weather();
+var WEATHER_API = "6aa562f78c0631a2b538a949824cb0e3"; //sets data received as values for currentLoc object
+
+var setLocationObject = function setLocationObject(currentLoc, coordsObj) {
+  var lat = coordsObj.lat,
+      lon = coordsObj.lon,
+      unit = coordsObj.unit;
+  currentLoc.setLat(lat);
+  currentLoc.setLon(lon);
+
+  if (unit) {
+    currentLoc.setUnit(unit);
+  }
+}; //takes currentLoc obj and finds 7days weather for that
+
+var getWeatherFromCoords = function getWeatherFromCoords(currentLoc) {
+  //need to set what lat lon unit is:
+  var lat = currentLoc.getLat();
+  var lon = currentLoc.getLon();
+  var unit = currentLoc.getUnit();
+  var url = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(lat, "&lon=").concat(lon, "&exclude=hourly,minutely&units=").concat(unit, "&appid=").concat(WEATHER_API);
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
+    return updateData(res.data);
+  })["catch"](function (err) {
+    return (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_1__.displayError)(err);
+  });
+}; //gets lat and lon for the requested city and if city is available sends its lon and lat to getWeatherFromCoords
+
+var getCoordsFromApi = function getCoordsFromApi(cityRequested) {
+  todayW.setName(cityRequested);
+  var urlCity = "https://api.openweathermap.org/data/2.5/weather?q=".concat(cityRequested, "&appid=").concat(WEATHER_API);
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get(urlCity).then(function (res) {
+    return apiSuccess(res.data);
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+}; //apiSuccess to get lat and lon and put it in currentLoc to get that weather
+
+var apiSuccess = function apiSuccess(weather) {
+  var coordsObj = {
+    lat: weather.coord.lat,
+    lon: weather.coord.lon
+  };
+  _index_js__WEBPACK_IMPORTED_MODULE_2__.currentLoc.setLat(coordsObj.lat);
+  _index_js__WEBPACK_IMPORTED_MODULE_2__.currentLoc.setLon(coordsObj.lon);
+  getWeatherFromCoords(_index_js__WEBPACK_IMPORTED_MODULE_2__.currentLoc);
+}; //passes data to menage separately current and future data weather
+
+
+var updateData = function updateData(weatherJson) {
+  setCurrentData(weatherJson.current);
+  setDailyData(weatherJson.daily);
+}; //sets currentData
+
+
+var setCurrentData = function setCurrentData(currentWeather) {
+  var feels_like = currentWeather.feels_like,
+      temp = currentWeather.temp;
+  var _currentWeather$weath = currentWeather.weather[0],
+      id = _currentWeather$weath.id,
+      description = _currentWeather$weath.description;
+  todayW.setTemp(temp.toFixed());
+  todayW.setIcon(id);
+  todayW.setFeelsLike(feels_like.toFixed());
+  todayW.setDescription(description);
+  (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_1__.displayCurrData)(todayW);
+};
+
+var setDailyData = function setDailyData(dailyWeather) {
+  var arr = [];
+
+  for (var i = 1; i < dailyWeather.length; i++) {
+    var followingDs = {
+      dt: (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_1__.transformUnixToDay)(dailyWeather[i].dt),
+      temp: dailyWeather[i].temp.day.toFixed(),
+      id: (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_1__.transformIdToIcon)(dailyWeather[i].weather[0].id)
+    };
+    arr.push(followingDs);
+  }
+
+  (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_1__.displayNextDays)(arr);
+};
+
+/***/ }),
+
+/***/ "./src/domFunctions.js":
+/*!*****************************!*\
+  !*** ./src/domFunctions.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addSpinner": () => (/* binding */ addSpinner),
+/* harmony export */   "displayCurrData": () => (/* binding */ displayCurrData),
+/* harmony export */   "displayError": () => (/* binding */ displayError),
+/* harmony export */   "displayGeoError": () => (/* binding */ displayGeoError),
+/* harmony export */   "displayNextDays": () => (/* binding */ displayNextDays),
+/* harmony export */   "displayTime": () => (/* binding */ displayTime),
+/* harmony export */   "getTime": () => (/* binding */ getTime),
+/* harmony export */   "transformIdToIcon": () => (/* binding */ transformIdToIcon),
+/* harmony export */   "transformUnixToDay": () => (/* binding */ transformUnixToDay)
+/* harmony export */ });
 var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var spinner = document.getElementById('spinner');
-var errorAlert = document.getElementById('error-section');
-var weatherCard = document.getElementById('weather-card');
-var cityName = document.getElementById("city-name");
-var tempParag = document.getElementById("temp");
-var feelsLikeT = document.getElementById("feels-like");
-var maxT = document.getElementById("max-temp");
-var minT = document.getElementById("min-temp");
-var weatherIcon = document.getElementById("icon"); //get and display date and time
+var errDiv = document.getElementById('error-msg');
+var errP = document.getElementById('err-p');
+var todayCard = document.getElementById('today');
+var followingSection = document.getElementById('following');
+var followingCards = document.getElementsByClassName('days'); //creates an obj for current time and date info
 
-var getDateAndTime = function getDateAndTime() {
-  var currentDate = new Date();
-  var day = currentDate.getDay();
-  var month = currentDate.getMonth();
-  var date = currentDate.getDate();
-  var hours = currentDate.getHours();
-  var minutes = currentDate.getMinutes() < 10 ? '0' + currentDate.getMinutes() : currentDate.getMinutes();
-  displayDayAndTime(day, month, date, hours, minutes);
+var getTime = function getTime(time) {
+  var currData = {
+    weekday: days[time.getDay()],
+    month: months[time.getMonth()],
+    day: time.getDate(),
+    hour: time.getHours(),
+    minutes: time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()
+  };
+  displayTime(currData);
 };
+var addSpinner = function addSpinner() {
+  spinner.classList = "d-block justify-content-center text-center my-5 p-5";
+}; //according to current time displays day or night
 
-var displayDayAndTime = function displayDayAndTime(day, month, date, hours, minutes) {
-  var weekday = days[day];
-  var monthInLett = months[month];
-  var dateInfos = document.getElementById('now-date');
-  dateInfos.innerText = "".concat(weekday, " ").concat(monthInLett, " ").concat(date, "  ").concat(hours, ":").concat(minutes);
-}; //display spinner
+var getDayOrNight = function getDayOrNight() {
+  var condition = new Date().getHours() < 19 && new Date().getHours() > 4;
+  var dayOrNight = condition === true ? 'day' : 'night';
+  return dayOrNight;
+}; //displays time and date according to developer choice
 
 
-var displaySpinner = function displaySpinner() {
-  spinner.className = "d-block justify-content-center text-center my-5";
-  var weatherCard = document.getElementById('weather-card');
-  weatherCard.className = "d-none row d-flex justify-content-center";
-}; //display errors
+var displayTime = function displayTime(currData) {
+  var currTime = document.getElementById('date');
+  currTime.innerText = "".concat(currData.weekday, " ").concat(currData.day, " ").concat(currData.month, " ").concat(currData.hour, ":").concat(currData.minutes);
+}; //displays error in a readble way
 
 var displayError = function displayError(errMsg) {
-  spinner.className = "d-none justify-content-center text-center my-5";
-  weatherCard.className = "d-none row d-flex justify-content-center";
-  errorAlert.className = "d-block my-5 col-md-6 d-flex justify-content-center text-center";
-  errorAlert.innerHTML = "<div class=\"alert alert-warning\" role=\"alert\">".concat(errMsg, "</div>");
-}; //toggle unit
+  spinner.classList = "d-none";
+  errDiv.classList = "d-block alert alert-warning mt-3 p-4 col-sm-6 m-auto";
+  errP.innerText = "We're sorry, ".concat(errMsg, ". Please try again");
+};
+var displayGeoError = function displayGeoError(errMsg) {
+  spinner.classList = "d-none";
+  errDiv.classList = "d-block alert alert-warning mt-3 p-4 col-sm-6 m-auto";
+  errP.innerText = "We're sorry, ".concat(errMsg, ". Please try again or submit a city name in the search bar.");
+}; //gets weekday for each day of followingDs
+
+var transformUnixToDay = function transformUnixToDay(unix) {
+  var date = new Date(unix * 1000);
+  var day = days[date.getDay()];
+  return day;
+}; //transform id to icon
+
+var transformIdToIcon = function transformIdToIcon(id) {
+  var DN = getDayOrNight();
+
+  if (id >= 200 && id <= 232) {
+    return '<i class="bi bi-cloud-lightning-rain fs-1"></i>';
+  } else if (id >= 300 && id <= 321) {
+    return '<i class="bi bi-cloud-drizzle fs-1"></i>';
+  } else if (id >= 500 && id <= 531) {
+    return '<i class="bi bi-cloud-rain fs-1"></i>';
+  } else if (id >= 600 && id <= 622) {
+    return '<i class="bi bi-cloud-snow fs-1"></i>';
+  } else if (id >= 701 && id <= 781) {
+    return '<i class="bi bi-cloud-fog fs-1"></i>';
+  } else if (id === 800 && DN == 'day') {
+    return '<i class="bi bi-sun fs-1"></i>';
+  } else if (id === 800 && DN == 'night') {
+    return '<i class="bi bi-moon fs-1"></i>';
+  } else if (id >= 801 && id <= 804) {
+    if (DN == 'day') return '<i class="bi bi-cloud-sun fs-1"></i>';
+    if (DN == 'night') return '<i class="bi bi-cloud-moon fs-1"></i>';
+  }
+}; //sets current weather infos
+
+var displayCurrData = function displayCurrData(todayW) {
+  var currWeather = {
+    name: todayW.getName(),
+    temp: todayW.getTemp(),
+    feels_like: todayW.getFeelsLike(),
+    desc: todayW.getDescription(),
+    icon: transformIdToIcon(todayW.getIcon())
+  };
+  spinner.classList = "d-none";
+  errDiv.classList = "d-none";
+  todayCard.classList = "d-block col-sm-8 col-lg-6 rounded bg-light shadow p-2 mb-5 text-center mx-auto";
+  var nameCard = document.getElementById('displayName');
+  nameCard.innerText = currWeather.name;
+  var tempCard = document.getElementById('todayTemp');
+  tempCard.innerText = "".concat(currWeather.temp, "\xB0");
+  var feelsLikeCard = document.getElementById('feels-like');
+  feelsLikeCard.innerText = "Feels like: ".concat(currWeather.feels_like, "\xB0");
+  var descCard = document.getElementById('description');
+  descCard.innerText = currWeather.desc;
+  var iconCard = document.getElementById('icon-card');
+  iconCard.innerHTML = currWeather.icon;
+};
+var displayNextDays = function displayNextDays(arrfollowingDs) {
+  followingSection.classList = "d-flex row justify-content-center";
+
+  for (var i = 0; i < arrfollowingDs.length, i < followingCards.length; i++) {
+    followingCards[i].innerHTML = "<div class=\"row\">\n                <p class=\"fs-5\">".concat(arrfollowingDs[i].dt, "</p>\n            </div>\n            <div class=\"row\">").concat(arrfollowingDs[i].id, "</div>\n            <div class=\"row\">\n                <p class=\"fs-5\">").concat(arrfollowingDs[i].temp, "\xB0</p>\n            </div>");
+  }
+};
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "currentLoc": () => (/* binding */ currentLoc)
+/* harmony export */ });
+/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.scss */ "./src/styles/style.scss");
+/* harmony import */ var _favicon_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./favicon.png */ "./src/favicon.png");
+/* harmony import */ var _Location_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Location.js */ "./src/Location.js");
+/* harmony import */ var _domFunctions_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./domFunctions.js */ "./src/domFunctions.js");
+/* harmony import */ var _dataFunctions_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dataFunctions.js */ "./src/dataFunctions.js");
+//import style and favicon
+
+
+
+
+
+var currentLoc = new _Location_js__WEBPACK_IMPORTED_MODULE_2__.Location();
+
+var initApp = function initApp() {
+  (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_3__.getTime)(new Date());
+  (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_3__.addSpinner)(); //get weather according to geolocation
+
+  getGeoWeather(); //change unit
+
+  var unitButton = document.getElementById("unit");
+  unitButton.addEventListener("click", setUnitPref); //get weather conditions for the requested city
+
+  var locationEntry = document.getElementById("searchBar__form");
+  locationEntry.addEventListener("submit", submitNewLocation);
+}; //starts initApp function when DOM is loaded
+
+
+document.addEventListener("DOMContentLoaded", initApp); //get user's position
+
+var getGeoWeather = function getGeoWeather() {
+  if (!navigator.geolocation) return geoError();
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+}; //if user's position is not available then:
+
+
+var geoError = function geoError(errObj) {
+  var errMsg = errObj ? errObj.message : "geolocation not supported";
+  (0,_domFunctions_js__WEBPACK_IMPORTED_MODULE_3__.displayGeoError)(errMsg);
+}; //if user's position is available
+
+
+var geoSuccess = function geoSuccess(position) {
+  //create an object with properties lat and lon
+  var coordsObj = {
+    lat: position.coords.latitude,
+    lon: position.coords.longitude
+  }; //pass currentLoc and coordsObj to a function that sets coordsObj props as Location istance props
+
+  (0,_dataFunctions_js__WEBPACK_IMPORTED_MODULE_4__.setLocationObject)(currentLoc, coordsObj); //passes currentLoc after being set to actual datas and calls weather api
+
+  (0,_dataFunctions_js__WEBPACK_IMPORTED_MODULE_4__.getWeatherFromCoords)(currentLoc);
+}; //toggle metric - imperial
 
 
 var setUnitPref = function setUnitPref() {
   currentLoc.toggleUnit();
-}; //function to get user coordinates
-
-var getGeoWeather = function getGeoWeather() {
-  if (!navigator.geolocation) {
-    return geoError();
-  } else {
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-  }
-};
-
-var geoError = function geoError(errObj) {
-  displaySpinner();
-  var errMsg = errObj ? errObj.message : "Geolocation not supported";
-  displayError(errMsg);
-};
-
-var geoSuccess = function geoSuccess(position) {
-  var coordsObj = {
-    lat: position.coords.latitude,
-    lon: position.coords.longitude
-  };
-  setLocationObj(currentLoc, coordsObj);
-};
-
-var getRequestedCityApi = function getRequestedCityApi(searchedCity) {
-  if (!searchedCity) return;
-
-  if (searchedCity.length > 0) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/weather?q=".concat(searchedCity, "&units=metric&appid=").concat(API_KEY)).then(function (res) {
-      return apiSuccess(res.data);
-    })["catch"](function (errMsg) {
-      return displayError(errMsg);
-    });
-  }
-};
-
-var apiSuccess = function apiSuccess(apiObj) {
-  var cityObj = {
-    lat: apiObj.coord.lat,
-    lon: apiObj.coord.lon,
-    name: apiObj.name
-  };
-  setLocationObj(currentLoc, cityObj);
-}; //takes the coords that we received from the navigator or from the user request and puts them in the istance currentLoc
-//here as "locationObj"
+  (0,_dataFunctions_js__WEBPACK_IMPORTED_MODULE_4__.getWeatherFromCoords)(currentLoc);
+}; //takes the city that has been requested from the user and finds lon and lat for it
 
 
-var setLocationObj = function setLocationObj(locationObj, coordsObj) {
-  var lat = coordsObj.lat,
-      lon = coordsObj.lon,
-      name = coordsObj.name;
-  locationObj.setLat(lat);
-  locationObj.setLon(lon);
-  locationObj.setName(name);
-  getWeather(locationObj);
-}; //get weather according to submitted data
+var submitNewLocation = function submitNewLocation(e) {
+  e.preventDefault();
+  var cityRequested = document.getElementById("searchBar__text").value;
+  if (!cityRequested.length) return; //finds lat and lon for that city
 
-
-var getWeather = function getWeather(locationObj) {
-  var lat = locationObj.getLat();
-  var lon = locationObj.getLon();
-  var name = locationObj.getName();
-  var unit = locationObj.getUnit();
-  getCoordsWeather(locationObj);
-}; //get weather from lat and lon
-
-
-var getCoordsWeather = function getCoordsWeather(locationObj) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/weather?lat=".concat(locationObj._lat, "&lon=").concat(locationObj._lon, "&units=").concat(locationObj._unit, "&appid=").concat(API_KEY)).then(function (res) {
-    return setData(res.data);
-  })["catch"](function (errMsg) {
-    return displayError(errMsg);
-  });
-};
-
-var setData = function setData(weatherApiObj) {
-  var weather = {
-    nameC: weatherApiObj.name,
-    temp: weatherApiObj.main.temp.toFixed(),
-    feels_like: weatherApiObj.main.feels_like.toFixed(),
-    temp_max: weatherApiObj.main.temp_max.toFixed(),
-    temp_min: weatherApiObj.main.temp_min.toFixed(),
-    temp_icon: weatherApiObj.weather[0].id
-  };
-  displayData(weather);
-  setImage(weather.temp_icon);
-};
-
-var displayData = function displayData(weather) {
-  spinner.className = "d-none justify-content-center text-center my-5";
-  errorAlert.className = "d-none my-5 col-md-6 d-flex justify-content-center text-center";
-  cityName.innerText = weather.nameC;
-  tempParag.innerText = weather.temp + "°";
-  feelsLikeT.innerText = weather.feels_like + "°";
-  maxT.innerText = weather.temp_max + "°";
-  minT.innerText = weather.temp_min + "°";
-  weatherCard.className = "d-block row d-flex justify-content-center";
-};
-
-var setImage = function setImage(id) {
-  id >= 200 && id < 300 ? weatherIcon.className = "bi bi-cloud-lightning-rain text-center" : id >= 300 && id < 400 ? weatherIcon.className = "bi bi-cloud-drizzle text-center" : id >= 500 && id < 600 ? weatherIcon.className = "bi bi-cloud-rain-heavy text-center" : id >= 600 && id < 700 ? weatherIcon.className = "bi bi-cloud-snow text-center" : id >= 700 && id < 800 ? weatherIcon.className = "bi bi-cloud-fog2 text-center" : id === 800 ? weatherIcon.className = "bi bi-sun text-center" : id === 801 ? weatherIcon.className = "bi bi-cloud-sun text-center" : id === 802 ? weatherIcon.className = "bi bi-cloud text-center" : id === 803 || id === 804 ? weatherIcon.className = "bi bi-clouds text-center" : weatherIcon.className = "bi bi-cloud-sun text-center";
+  (0,_dataFunctions_js__WEBPACK_IMPORTED_MODULE_4__.getCoordsFromApi)(cityRequested);
 };
 
 /***/ }),
@@ -3498,14 +3722,14 @@ module.exports = __webpack_require__.p + "bootstrap-icons.woff";
 
 /***/ }),
 
-/***/ "./src/assets/favicon.ico":
-/*!********************************!*\
-  !*** ./src/assets/favicon.ico ***!
-  \********************************/
+/***/ "./src/favicon.png":
+/*!*************************!*\
+  !*** ./src/favicon.png ***!
+  \*************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-module.exports = __webpack_require__.p + "favicon.ico";
+module.exports = __webpack_require__.p + "favicon.png";
 
 /***/ })
 
@@ -3643,42 +3867,12 @@ module.exports = __webpack_require__.p + "favicon.ico";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions */ "./src/functions.js");
-/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.scss */ "./src/styles/style.scss");
-/* harmony import */ var _assets_favicon_ico__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/favicon.ico */ "./src/assets/favicon.ico");
-//import file js:
- //import style and favicon
-
-
-
-
-var initApp = function initApp() {
-  (0,_functions__WEBPACK_IMPORTED_MODULE_0__.getDateAndTime)();
-  (0,_functions__WEBPACK_IMPORTED_MODULE_0__.displaySpinner)();
-  (0,_functions__WEBPACK_IMPORTED_MODULE_0__.getGeoWeather)(); //get requested city weather
-
-  var btnSearch = document.getElementById('btn-search');
-  btnSearch.addEventListener('click', function (e) {
-    e.preventDefault();
-    var searchedCity = document.getElementById('cityRequested').value;
-    (0,_functions__WEBPACK_IMPORTED_MODULE_0__.getRequestedCityApi)(searchedCity);
-  }); //toggle unit
-
-  var btnUnit = document.getElementById('btn-unit');
-  btnUnit.addEventListener('click', _functions__WEBPACK_IMPORTED_MODULE_0__.setUnitPref);
-};
-
-initApp();
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map

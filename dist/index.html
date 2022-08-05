@@ -5,108 +5,150 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
     <title>
         Webpack Weather App
     </title>
-<link rel="icon" href="favicon.ico"><script defer src="bundle.js"></script></head>
+<link rel="icon" href="favicon.png"><script defer src="bundle.js"></script></head>
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-dark fixed-top shadow bg-primary">
+    <nav class="navbar bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand">
-                <i class="bi bi-cloud-sun-fill text-light" style="font-size: 2rem"></i>
+            <a class="navbar-brand text-light">
+                <i class="bi bi-cloud-sun"></i>
                 Weather Forecast
             </a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" id="cityRequested" placeholder="city name" value="";
-                    aria-label="Insert city name please.">
-                <button class="btn btn-outline-light" type="submit" id="btn-search"><i
-                        class="bi bi-search"></i></button>
+            <form class="d-flex" id="searchBar__form" role="search">
+                <input class="form-control me-2" type="search" id="searchBar__text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
     </nav>
 
-    <!-- button-date / spinner / error / weather card-->
-    <main class="container-fluid position-absolute top-25 start-0">
+    <!-- main container -->
+    <main class="container-fluid p-5">
 
-        <!-- button and date -->
-        <section class="row d-flex align-items-center">
-            <!-- change unit -->
-            <div class="col text-center">
-                <button class="btn btn-outline-primary fs-6" id="btn-unit">°C / °F</button>
+        <!-- date and button -->
+        <div class="row d-flex justify-content-center">
+            <p class=" col-sm-3 text-center pt-2 text-primary" id="date"></p>
+            <button class="col-sm-2 btn btn-outline-primary" type="button" id="unit">C / F</button>
+        </div>
+
+        <!--- today -->
+        <div class="row mt-5">
+
+            <!-- spinner -->
+            <div class="d-none justify-content-center text-center my-5 p-5" id="spinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-            <!-- date -->
-            <div class="col">
-                <p class="fs-6 text-primary text-center mt-2" id="now-date"></p>
+
+            <!-- error -->
+            <div class="d-none alert alert-warning my-5 p-4 col-sm-6 m-auto" id="error-msg" role="alert">
+                <p class="text-center" id="err-p"></p>
             </div>
-        </section>
 
-        <!--spinner-->
-        <section class="d-block justify-content-center text-center my-5" id="spinner">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </section>
+            <!-- today's weather -->
+            <section class="d-none col-sm-8 col-lg-6 rounded shadow p-2 mb-5 text-center mx-auto" id="today">
 
-        <!-- display error -->
-        <section class="d-none my-5 col-md-6 d-flex justify-content-center text-center" id="error-section">
-        </section>
-        
-        <!-- weather card -->
-        <section class="d-none row d-flex justify-content-center" id="weather-card">
-
-            <!-- card -->
-            <div class="col-10 col-md-6 shadow-lg p3 bg-light mt-5 rounded text-primary">
-
-                <!-- name and temperature -->
-                <div class="row mt-2">
-                    <!-- name of the city -->
-                    <div class="col"><p class="fw-bold text-center fs-5" id="city-name"></p></div>
-                    <!-- live temperature -->
-                    <div class="col"><p class="fw-bold text-center fs-5" id="temp"></p></div>
+                <div class="row flex-sm-column-reverse">
+                    <div class="col-12 p-2" id="icon-card"><i class="bi bi-sun fs-1"></i></div>
+                    <div class="col-12 col-sm-12 p-2">
+                        <h1 class="text-break fs-4 fw-5 align-middle" id="displayName"></h1>
+                    </div>
                 </div>
 
-                <!-- weather icon -->
                 <div class="row">
-                    <i class="bi bi-sun-fill text-center" id="icon" style="font-size: 3rem"></i>
+                    <div class="col-6 my-auto">
+                        <p class="fs-5 text-center" id="todayTemp"></p>
+                    </div>
+                    <div class="col-6 my-auto">
+                        <p id="feels-like" class="fs-6"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="text-center" id="description"></p>
                 </div>
 
-                <!-- additional infos-->
-                <div class="row m-auto">
+            </section>
 
-                    <!-- feels like -->
-                    <div class="row m-auto">
-                        <div class="col"><p class="fw-bold text-start" >Feels like:</p></div>
-                        <div class="col"><p class="fw-bold text-end"id="feels-like"></p></div>
-                    </div>
-                    <!-- max temp -->
-                    <div class="row m-auto">
-                        <div class="col text-start fw-bold"><i class="bi bi-thermometer-high" style="font-size: 1rem"></i> max</div>
-                        <div class="col"><p class="fw-bold text-end" id="max-temp"></p></div>
-                    </div>
-                    <!-- min temp -->
-                    <div class="row m-auto">
-                        <div class="col text-start fw-bold"><i class="bi bi-thermometer-low" style="font-size: 1rem"></i> min</div>
-                        <div class="col"><p class="fw-bold text-end" id="min-temp"></p></div>
-                    </div>
+        </div>
 
+        <!-- following 6 days -->
+        <div class="d-none row justify-content-center" id="following">
+
+            <section class="col-5 col-sm-4 col-lg-1 rounded text-center bg-light m-1 shadow days">
+                <div class="row">
+                    <p class="fs-5"></p>
                 </div>
+                <div class="row"></div>
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+            </section>
 
-            </div>
-        </section>
+            <section class="col-5 col-sm-4 col-lg-1 rounded text-center bg-light m-1 shadow days">
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+                <div class="row"></i></div>
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+            </section>
+
+            <section class="col-5 col-sm-4 col-lg-1 rounded text-center  bg-light m-1 shadow days">
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+                <div class="row"></div>
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+            </section>
+
+            <section class="col-5 col-sm-4 col-lg-1 rounded text-center bg-light m-1 shadow days">
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+                <div class="row"></div>
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+            </section>
+
+            <section class="col-5 col-sm-4 col-lg-1 rounded text-center bg-light m-1 shadow days">
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+                <div class="row"></i></div>
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+            </section>
+
+            <section class="col-5 col-sm-4 col-lg-1 rounded text-center bg-light m-1 shadow days">
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+                <div class="row"></i></div>
+                <div class="row">
+                    <p class="fs-5"></p>
+                </div>
+            </section>
+
+        </div>
 
     </main>
 
-    <!-- creator infos -->
-    <footer class="fixed-bottom">
-        <div class="row text-primary">
-            <p class="text-center fs-6">Created by <a href="https://eulaliapi.github.io/" target="_blank">Eulalia
-                    Pirone</a> <a target="_blank" href="https://github.com/eulaliapi"><i
-                        class="fs-6 bi bi-github"></i></a></p>
-        </div>
+    <!-- footer -->
+    <footer class="container-fluid p-3 text-center text-primary">
+        <p>Created by <a target="_blank" href="https://eulaliapi.github.io/">Eulalia Pirone</a> <a target="_blank"
+                href="https://github.com/eulaliapi"><i class="fs-4 bi bi-github"></i></a></p>
     </footer>
+
 
 </body>
 
