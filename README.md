@@ -13,7 +13,6 @@ Improvements:
 </br>
 To improve:
 
-<li>Learn how to hide an API key on Netlify using Dotenv</li>
 <li>Create a button to change language from EN to IT</li>
 <li>Create a button to change time from the 24H format to the 12H one</li>
 
