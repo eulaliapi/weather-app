@@ -6,7 +6,7 @@ import { Weather } from "./Weather.js"
 
 const todayW = new Weather();
 
-const WEATHER_API = "6aa562f78c0631a2b538a949824cb0e3";
+const WEATHER_API = process.env.OPEN_WEATHER_MAP_API_KEY;
 
 //sets data received as values for currentLoc object
 export const setLocationObject = (currentLoc, coordsObj) => {
