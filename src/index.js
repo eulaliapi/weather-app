@@ -1,6 +1,5 @@
 //import style and favicon
 import './styles/style.scss';
-import favicon from './favicon.png';
 
 import { Location } from "./Location.js";
 import { displayGeoError, getTime, addSpinner} from "./domFunctions.js";
@@ -8,7 +7,12 @@ import { setLocationObject, getWeatherFromCoords, getCoordsFromApi } from "./dat
 
 export const currentLoc = new Location();
 
+const body = document.querySelector('body');
+
 const initApp = () => {
+    //avoid html to show before styling is applied
+    body.style.display = "block";
+
     getTime(new Date())
     addSpinner()
     

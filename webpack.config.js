@@ -70,7 +70,7 @@ module.exports = {
             title: 'Webpack Weather App',
             filename: 'index.html',
             template: 'src/template.html',
-            favicon: 'src/favicon.png',
+            favicon: 'src/favicon.ico',
         }),
         new Dotenv({
             systemvars: true
